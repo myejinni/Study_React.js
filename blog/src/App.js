@@ -7,7 +7,10 @@ function App() {
 
   let post='강남 우동 맛집';
   let [글제목,글제목변경] = useState(['남자코트추천', '강남우동맛집','파이썬독학']);
-  let [좋아요, 좋아요변경]= useState(0);
+  let [좋아요, 좋아요변경]= useState([0,0,0]);
+  let [modal, setModal]=useState(false);
+  let [cnt, setCnt]=useState(0);
+
 
   return ( 
     <div className="App">
@@ -23,14 +26,14 @@ function App() {
       }}>가나다순정렬
       </button>
 
-        <div className='list'>
+        {/* <div className='list'>
           <h4>{ 글제목[0] } <span onClick={()=>{ 좋아요변경(좋아요+1) }}>👍</span> {좋아요} </h4>
           <p>2월 17일 발행</p>
 
           <button onClick={()=>{
             let copy1=[...글제목];
             copy1[0]='여자코트추천';
-            글제목변경(cop1y);
+            글제목변경(copy1);
             }}>제목 수정</button>
 
         </div>
@@ -38,21 +41,34 @@ function App() {
           <h4>{글제목[1]}</h4>
           <p>2월 17일 발행</p>
         </div>
+
         <div className='list'>
-          <h4>{글제목[2]}</h4>
+          <h4 onClick={()=>{
+            setCnt(cnt+1)
+            setModal(true)
+          }}>{글제목[2]}</h4>
           <p>2월 17일 발행</p>
-        </div>
+        </div> */}
 
+        {
+          글제목.map(function(a,i){
+            return <div className='list'>
+            <h4>{글제목[i]}
+            <span onClick={()=>{ 
+              let 좋아요카피=[...좋아요];
+              좋아요카피[i]=좋아요카피[i]+1;
+              좋아요변경(좋아요카피)
+              }}> 👍</span>{좋아요[i]} 
+            </h4>
+            <p>2월 17일 발행</p>
+          </div>
+          })
+        }
 
-        
-        <div className='modal'>
-          <h4>제목</h4>
-          <p>날짜</p>
-          <p>상세내용</p>
-        </div>
+        {
+          cnt%2==0 ? '': <Modal/>
+        }
 
-    <Modal></Modal>
-    <Alert></Alert>
 
     </div>
   );
