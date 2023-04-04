@@ -9,6 +9,7 @@ function App() {
   let [글제목,글제목변경] = useState(['남자코트추천', '강남우동맛집','파이썬독학']);
   let [좋아요, 좋아요변경]= useState([0,0,0]);
   let [modal, setModal]=useState(false);
+  let [title, setTitle]=useState(0,1,2);
   let [cnt, setCnt]=useState(0);
 
 
@@ -57,6 +58,7 @@ function App() {
             <h4 onClick={()=>{
             setCnt(cnt+1)
             setModal(true)
+            setTitle(i)
             }}> {글제목[i]}
 
             <span onClick={()=>{ 
@@ -71,7 +73,7 @@ function App() {
         }
 
         {
-          cnt%2==0 ? null : <Modal 글제목변경={글제목변경} 글제목={글제목}/>
+          cnt%2==0 ? null : <Modal title={title} 글제목변경={글제목변경} 글제목={글제목}/>
         }
 
     </div>
@@ -83,11 +85,12 @@ function Modal(props){
 
   return(
     <div className='modal'>
-          <h4>{props.글제목[0]}</h4>
+          <h4>{props.글제목[props.title]}</h4>
+
           <p>날짜</p>
           <p>상세내용</p>
           <button onClick={()=>{
-           props.글제목변경(['여자코트추천', '강남우동맛집','파이썬독학'])
+            // props.글제목변경(['여자코트추천','강남우동맛집','파이썬독학'])
           }}>글수정</button>
     </div>
   )
