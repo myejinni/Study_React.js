@@ -26,7 +26,7 @@ function App() {
       }}>가나다순정렬
       </button>
 
-        {/* <div className='list'>
+        {/* /* <div className='list'>
           <h4>{ 글제목[0] } <span onClick={()=>{ 좋아요변경(좋아요+1) }}>👍</span> {좋아요} </h4>
           <p>2월 17일 발행</p>
 
@@ -48,12 +48,17 @@ function App() {
             setModal(true)
           }}>{글제목[2]}</h4>
           <p>2월 17일 발행</p>
-        </div> */}
+        </div> */ }
+
 
         {
           글제목.map(function(a,i){
             return <div className='list'>
-            <h4>{글제목[i]}
+            <h4 onClick={()=>{
+            setCnt(cnt+1)
+            setModal(true)
+            }}> {글제목[i]}
+
             <span onClick={()=>{ 
               let 좋아요카피=[...좋아요];
               좋아요카피[i]=좋아요카피[i]+1;
@@ -66,21 +71,24 @@ function App() {
         }
 
         {
-          cnt%2==0 ? '': <Modal/>
+          cnt%2==0 ? null : <Modal 글제목변경={글제목변경} 글제목={글제목}/>
         }
-
 
     </div>
   );
 }
 
-function Modal(){
+// 모달 컴포넌트
+function Modal(props){
 
   return(
     <div className='modal'>
-          <h4>제목</h4>
+          <h4>{props.글제목[0]}</h4>
           <p>날짜</p>
           <p>상세내용</p>
+          <button onClick={()=>{
+           props.글제목변경(['여자코트추천', '강남우동맛집','파이썬독학'])
+          }}>글수정</button>
     </div>
   )
 }
