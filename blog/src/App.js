@@ -12,6 +12,10 @@ function App() {
   let [title, setTitle]=useState(0,1,2);
   let [cnt, setCnt]=useState(0);
 
+  // 입력창에 넣을 인풋값(글제목)
+  let [input, setInput]=useState(''); 
+  let [remove, setRemove]=useState('')
+
 
   return ( 
     <div className="App">
@@ -20,36 +24,13 @@ function App() {
       </div>
 
       {/* 상품 가나다순 정렬 */}
+
       <button onClick={()=>{
         let copy=[...글제목];
         copy=copy.sort();
         글제목변경(copy)
       }}>가나다순정렬
       </button>
-
-        {/* /* <div className='list'>
-          <h4>{ 글제목[0] } <span onClick={()=>{ 좋아요변경(좋아요+1) }}>👍</span> {좋아요} </h4>
-          <p>2월 17일 발행</p>
-
-          <button onClick={()=>{
-            let copy1=[...글제목];
-            copy1[0]='여자코트추천';
-            글제목변경(copy1);
-            }}>제목 수정</button>
-
-        </div>
-        <div className='list'>
-          <h4>{글제목[1]}</h4>
-          <p>2월 17일 발행</p>
-        </div>
-
-        <div className='list'>
-          <h4 onClick={()=>{
-            setCnt(cnt+1)
-            setModal(true)
-          }}>{글제목[2]}</h4>
-          <p>2월 17일 발행</p>
-        </div> */ }
 
 
         {
@@ -61,16 +42,39 @@ function App() {
             setTitle(i)
             }}> {글제목[i]}
 
-            <span onClick={()=>{ 
+            <span onClick={(e)=>{ e.stopPropagation();
               let 좋아요카피=[...좋아요];
               좋아요카피[i]=좋아요카피[i]+1;
               좋아요변경(좋아요카피)
               }}> 👍</span>{좋아요[i]} 
             </h4>
             <p>2월 17일 발행</p>
+
+            <button onClick={()=>{
+              let newTitle=[...글제목];
+              newTitle.splice(i,1)
+              글제목변경(newTitle)
+            }}>삭제</button>
+
           </div>
           })
         }
+
+        <input onChange={(e)=>{
+            (setInput(e.target.value)); 
+            }}/>
+
+        <button onClick={()=>{ 
+
+            // 카피본 만들기
+            let newTitle=[...글제목];
+            // newTitle 맨 처음에 유저가 입력한 글 추가
+            newTitle.unshift(input);
+            글제목변경(newTitle)
+          }}>글발행</button> 
+
+       
+
 
         {
           cnt%2==0 ? null : <Modal title={title} 글제목변경={글제목변경} 글제목={글제목}/>
