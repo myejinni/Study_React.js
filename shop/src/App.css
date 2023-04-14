@@ -7,6 +7,9 @@
   background-image: url('./img/bg.png');
 }
 
+.me-auto {
+  text-decoration: none; 
+}
 
 .App {
   text-align: center;

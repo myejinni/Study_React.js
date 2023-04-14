@@ -13,43 +13,47 @@ function App() {
   return (
     <div className="App">
 
-      <Routes>
-        <Route path='/detail' element={<div>상세페이지</div>} />
-        <Route/>
-      </Routes>
-
       <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">main</Nav.Link>
-            <Nav.Link href="#sale">sale</Nav.Link>
+            <Link to="/" style={{ textDecoration: "none" ,padding:"10px"}}>홈</Link>
+            <Link to="/detail" style={{ textDecoration: "none" , padding:"10px"}}>상세페이지</Link>
             <Nav.Link href="#cart">cart</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
 
-      <div className='main-bg'></div>
+      {/* 
+      <Link to="/">홈</Link>
+      <Link to="/detail">상세페이지</Link> */}
 
-        {/* 상품 목록 3개 */}
-        <div className="container">
-         <div className="row">
-          {/* <Product shoes={shoes[0]} i={1}></Product>
-          <Product shoes={shoes[1]} i={2}></Product>
-          <Product shoes={shoes[2]} i={3}></Product> */}
+      <Routes>
+        {/* main-page */}
+        <Route path='/' element={
+        <>
+          <div className='main-bg'></div>
+            <div className="container">
+              <div className="row">
           
-          { // shoes 갯수만큼 반복문 돌리기
-            shoes.map((a,i)=>{
-              return(
-                <Product shoes={shoes[i]} i={i+1}></Product>
-              )
-            })
-          }
-          </div>
-        </div>
-       </div>
+              { // shoes 갯수만큼 반복문 돌리기
+                shoes.map((a,i)=>{
+                  return(
+                    <Product shoes={shoes[i]} i={i+1}></Product>
+                  )
+              })}
+              </div>
+           </div>
+          </>
+        } />
+        {/* detail-page */}
+        <Route path='/detail' element={<div>상세페이지</div>} />
+      </Routes>
+
+    </div>
   );
 }
+
 
 function Product(props){
 
