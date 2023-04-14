@@ -3,6 +3,7 @@ import {Button, Navbar, Container, Nav, Card} from 'react-bootstrap';
 import bg from './img/bg.png'
 import product from './data.js';
 import { useState } from 'react';
+import {Routes, Route, Link} from 'react-router-dom'
 
 function App() {
 
@@ -11,6 +12,12 @@ function App() {
 
   return (
     <div className="App">
+
+      <Routes>
+        <Route path='/detail' element={<div>상세페이지</div>} />
+        <Route/>
+      </Routes>
+
       <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
