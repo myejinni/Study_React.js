@@ -27,13 +27,20 @@ function App() {
         {/* 상품 목록 3개 */}
         <div className="container">
          <div className="row">
-          <Product shoes={shoes[0]} i={1}></Product>
+          {/* <Product shoes={shoes[0]} i={1}></Product>
           <Product shoes={shoes[1]} i={2}></Product>
-          <Product shoes={shoes[2]} i={3}></Product>
+          <Product shoes={shoes[2]} i={3}></Product> */}
+          
+          { // shoes 갯수만큼 반복문 돌리기
+            shoes.map((a,i)=>{
+              return(
+                <Product shoes={shoes[i]} i={i+1}></Product>
+              )
+            })
+          }
           </div>
         </div>
        </div>
-
   );
 }
 
