@@ -4,7 +4,7 @@ import bg from './img/bg.png'
 import product from './data.js';
 import { useState } from 'react';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
-import detailPage from './detailPage.js';
+import Detail from './Detail.js';
 
 function App() {
 
@@ -47,12 +47,14 @@ function App() {
           </>
         } />
         {/* detail-page */}
-        <Route path='/detail' element={detailPage()} />
+        <Route path='/detail/:id' element={<Detail shoes={shoes}></Detail>} />
+        
+
         <Route path='/event' element={<Event/>}>
           <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>}/>
           <Route path='two' element={<div>생일기념 쿠폰받기</div>}/>
         </Route>
-        <Route path='*' element={<div>없는 페이지</div>} />
+        {/* <Route path='*' element={<div>없는 페이지</div>} /> */}
       
       </Routes>
 
