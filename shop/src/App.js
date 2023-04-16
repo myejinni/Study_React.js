@@ -4,6 +4,7 @@ import bg from './img/bg.png'
 import product from './data.js';
 import { useState } from 'react';
 import {Routes, Route, Link} from 'react-router-dom'
+import detailPage from './detailPage.js';
 
 function App() {
 
@@ -24,10 +25,7 @@ function App() {
         </Container>
       </Navbar>
 
-      {/* 
-      <Link to="/">홈</Link>
-      <Link to="/detail">상세페이지</Link> */}
-
+      {/* 페이지 구분 */}
       <Routes>
         {/* main-page */}
         <Route path='/' element={
@@ -47,7 +45,7 @@ function App() {
           </>
         } />
         {/* detail-page */}
-        <Route path='/detail' element={<div>상세페이지</div>} />
+        <Route path='/detail' element={detailPage()} />
       </Routes>
 
     </div>
