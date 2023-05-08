@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from 'styled-components'
 
@@ -18,21 +19,25 @@ let Box=styled.div`
     background:grey;
     padding:20px;
 `
-
-
 function Detail(props){
+
+    useEffect(()=>{
+        //mount, update 시 여기 코드 실행됨 
+    })
+
+    let [count, setCount] = useState(0)
 
     // 유저가 :id 자리에 적은거 가져와줌
     let {id}=useParams(); 
 
     return(
         <div className="container">
-            <Box>
-                <YellowBtn bg="blue">버튼</YellowBtn>
-                <YellowBtn bg="orange">버튼</YellowBtn>
-                <NewBtn bg='yellow'>버튼</NewBtn>
-            </Box>
-
+            <div className="alert alert-warning">
+                2초 이내 구매 시 할인
+            </div>
+            {count}
+            <YellowBtn onClick={()=>{setCount(count+1)}} bg="blue">버튼</YellowBtn>
+            
             <div className="row">
             <div className="col-md-6">
                 <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
