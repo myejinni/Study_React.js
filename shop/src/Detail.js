@@ -21,20 +21,27 @@ let Box=styled.div`
 `
 function Detail(props){
 
-    useEffect(()=>{
-        //mount, update 시 여기 코드 실행됨 
-    })
-
-    let [count, setCount] = useState(0)
-
     // 유저가 :id 자리에 적은거 가져와줌
     let {id}=useParams(); 
+    let [alert, setAlert]=useState(true)
+    let [count, setCount] = useState(0)
+
+    useEffect(()=>{ 
+        //mount, update 시 여기 함수 안쪽 코드 실행됨 
+        //setTimeout(()=>{ 실행할 코드}, 1000)
+        let t=setTimeout(()=>{ setCount(count+1)<=2 ? setAlert(true) : setAlert(false)}, 2000)
+        return()=>{
+            clearTimeout(t) //타이머 제거하고 싶으면 
+        }
+    },[])
 
     return(
         <div className="container">
+            { alert==true ? 
             <div className="alert alert-warning">
                 2초 이내 구매 시 할인
-            </div>
+            </div> : false }
+
             {count}
             <YellowBtn onClick={()=>{setCount(count+1)}} bg="blue">버튼</YellowBtn>
             
